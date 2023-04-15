@@ -195,13 +195,13 @@ def train_bert(model: BertForSequenceClassification, train_dataloader: DataLoade
     total_steps = len(train_dataloader) * epochs
 
     # create the optimizer
-    optimizer = AdamW(model.parameters(), lr=5e-5, eps=1e-8)
+    optimizer = AdamW(model.parameters(), lr=5e-6, eps=1e-8)
 
     # create the learning rate scheduler
-    scheduler = get_linear_schedule_with_warmup(optimizer, num_warmup_steps=0, num_training_steps=total_steps)
+    scheduler = get_linear_schedule_with_warmup(optimizer, num_warmup_steps=3, num_training_steps=total_steps)
 
     # set the seed for reproducibility
-    seed_val = 66
+    seed_val = 60
     random.seed(seed_val)
     np.random.seed(seed_val)
     torch.manual_seed(seed_val)
